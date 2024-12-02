@@ -32,7 +32,7 @@ def filtered_month():
 # ------------------------------------------------
 # Define the Shiny UI Page layout - Page Options
 # ------------------------------------------------
-ui.page_opts(title="Pinkston's Custom PyShiny Plots with Flights", fillable=True, style="background-color: silver")
+ui.page_opts(showcase=icon_svg("plane"),title="Pinkston's Custom PyShiny Plots with Flights", fillable=True, style="background-color: silver")
 # ------------------------------------------------
 # Define the Shiny UI Page layout - Sidebar
 # ------------------------------------------------
@@ -54,12 +54,27 @@ with ui.sidebar(position="right", open="open", bg="silver"):
     
 # Main Content
 with ui.layout_columns():
+    with ui.value_box(
+        showcase=icon_svg("plane"),
+        theme="bg-gradient-blue-purple",
+    ):
+        "Flight Data: Number of Passengers per Flight, from 1949 to 1960"
+
+with ui.layout_columns():
     with ui.card(full_screen=True):
         ui.card_header("Data Grid of Flights")
         @render.data_frame
         def grid():
              return render.DataGrid(data=filtered_month())
-        
+
+with ui.layout_columns():
+    with ui.card(full_screen=True):
+        ui.card_header("Plotly Histogram: Distribution of Passengers by Selected Month")
+        @render_plotly
+        def plot():
+            selected_month=input.selected_month_list()
+            return px.histogram(filtered_month(), x=selected_month, color="passengers", nbins=flights_df['year'])
+
 with ui.layout_columns():
     with ui.card(full_screen=True):
         ui.card_header("Plotly Scatterplot: Flights")

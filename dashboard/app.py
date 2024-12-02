@@ -28,7 +28,7 @@ def filtered_year():
         filtered_df=flights_df
     return filtered_df
 
-@reactive_calc
+@reactive.calc
 def filtered_month():
     selected_month=input.selected_month_list()
     if selected_month:
@@ -39,11 +39,11 @@ def filtered_month():
 # ------------------------------------------------
 # Define the Shiny UI Page layout - Page Options
 # ------------------------------------------------
-ui.page_opts(title="Pinkston's Custom PyShiny Plots with Flights", fillable=True)
+ui.page_opts(title="Pinkston's Custom PyShiny Plots with Flights", fillable=True, style="background-color: silver")
 # ------------------------------------------------
 # Define the Shiny UI Page layout - Sidebar
 # ------------------------------------------------
-with ui.sidebar(position="right", open="open", bg="#d5d8dc"):
+with ui.sidebar(position="right", open="open", bg="silver"):
     ui.h2("Sidebar")
 
     ui.input_selectize(

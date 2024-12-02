@@ -57,6 +57,7 @@ pywin32==308
 questionary==2.0.1
 referencing==0.35.1
 rpds-py==0.21.0
+scipy
 seaborn==0.13.2
 setuptools==75.6.0
 shiny==1.2.0

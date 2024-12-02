@@ -57,7 +57,7 @@ pywin32==308
 questionary==2.0.1
 referencing==0.35.1
 rpds-py==0.21.0
-scipy
+scipy==1.14.1
 seaborn==0.13.2
 setuptools==75.6.0
 shiny==1.2.0
@@ -75,5 +75,6 @@ uc-micro-py==1.0.3
 uvicorn==0.32.0
 watchfiles==0.24.0
 wcwidth==0.2.13
+websocket-client==1.8.0
 websockets==10.4
 widgetsnbextension==4.0.13

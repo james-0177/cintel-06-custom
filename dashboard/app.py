@@ -5,6 +5,7 @@ import plotly.express as px
 import random
 import seaborn as sns
 import pandas as pd
+from pathlib import Path
 from shiny import reactive
 from shiny.express import render, input, ui
 from shinywidgets import render_plotly
@@ -15,7 +16,7 @@ from faicons import icon_svg
 # ------------------------------------------------
 # Get the Data
 #-------------------------------------------------
-flights_df = pd.read_csv('flights.csv')
+flights_df: pd.DataFrame = pd.read_csv(Path(__file__).parent / "flights.csv")
 # -------------------------------------------------
 # Reactive calculations and effects
 # -------------------------------------------------
@@ -49,8 +50,7 @@ with ui.sidebar(position="right", open="open", bg="silver"):
     ui.input_selectize(
         "selected_year_list",
         "Select a Year",
-        ["1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960"],
-        multiple=True)
+        ["1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960"])
     
     ui.input_checkbox_group(
         "selected_month_list",
@@ -71,14 +71,14 @@ with ui.layout_columns():
         ui.card_header("Data Grid of Flights")
         @render.data_frame
         def grid():
-             return render.DataGrid(data=filtered_year() + filtered_month())
+             return render.DataGrid(data=filtered_year())
         
 with ui.layout_columns():
     with ui.card(full_screen=True):
         ui.card_header("Plotly Scatterplot: Flights")
         @render_plotly
         def plotly_scatterplot():
-            return px.scatter(data_frame=filtered_year() + filtered_month(), x="month", y="year", color="passengers", hover_name="passengers")
+            return px.scatter(data_frame=filtered_year(), x="month", y="year", color="passengers", hover_name="passengers")
 #---------------------------------------------------------------------
 # In Shiny Express, everything not in the sidebar is in the main panel
 #---------------------------------------------------------------------

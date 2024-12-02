@@ -55,11 +55,16 @@ with ui.sidebar(position="right", open="open", bg="silver"):
 # Main Content
 with ui.layout_columns():
     with ui.value_box(
-        "Flight Data",
+        "Flight Data: Number of Passengers per Flight, from 1949 to 1960",
         showcase=icon_svg("plane"),
-        theme="bg-gradient-blue-purple"):
+        theme="bg-gradient-blue-purple",
+    ):
+        "Selected Month"
 
-       "Number of Passengers per Flight, from 1949 to 1960"
+        @render.text
+        def display_month():
+            month_selected = filtered_month()
+            return f"{month_selected}"
 
 with ui.layout_columns():
     with ui.card(full_screen=True):

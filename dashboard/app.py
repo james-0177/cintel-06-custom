@@ -54,7 +54,7 @@ with ui.sidebar(position="right", open="open", bg="silver"):
     
 # Main Content
 with ui.layout_columns():
-    with ui.card(full_screen=True, style="background-color: dodgerblue", height=2):
+    with ui.card(full_screen=True, style="background-color: dodgerblue", height=10):
         ui.p(icon_svg("plane"),"Flight Data:  Number of Passengers per Month from 1949 to 1960")        
 
 with ui.layout_columns():

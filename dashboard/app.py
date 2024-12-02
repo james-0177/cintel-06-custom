@@ -54,6 +54,10 @@ with ui.sidebar(position="right", open="open", bg="silver"):
     
 # Main Content
 with ui.layout_columns():
+    with ui.card(full_screen=True, bg="dodgerblue"):
+        ui.card_body(icon_svg("plane"),"Flight Data:  Number of Passengers per Month from 1949 to 1960")        
+
+with ui.layout_columns():
     with ui.card(full_screen=True):
         ui.card_header("Data Grid of Flights")
         @render.data_frame
@@ -65,7 +69,7 @@ with ui.layout_columns():
         ui.card_header("Plotly Scatterplot: Flights")
         @render_plotly
         def plotly_scatterplot():
-            return px.scatter(data_frame=filtered_month(), x="month", y="year", color="passengers", hover_name="passengers")
+            return px.scatter(data_frame=filtered_month(), x="year", y="passengers", color="month", hover_name="month")
 #---------------------------------------------------------------------
 # In Shiny Express, everything not in the sidebar is in the main panel
 #---------------------------------------------------------------------

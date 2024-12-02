@@ -24,10 +24,10 @@ flights_df: pd.DataFrame = pd.read_csv(Path(__file__).parent / "flights.csv")
 def filtered_year():
     selected_year=input.selected_year_list()
     if selected_year:
-        filtered_df=flights_df[flights_df['year'].isin(selected_year)]
+        year_df=flights_df[flights_df["year"].isin(selected_year)]
     else:
-        filtered_df=flights_df
-    return filtered_df
+        year_df=flights_df
+    return year_df
 
 @reactive.calc
 def filtered_month():

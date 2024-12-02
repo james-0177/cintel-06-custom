@@ -1,6 +1,6 @@
 ## cintel-06-custom
 
-Module 6
+Module 6 will explore creating a custom PyShiny app using GitHub, Git, and PyShiny.
 
 # Create and Activate Project Virtual Environment
 
@@ -45,3 +45,6 @@ git commit -m "Update GitHub Repository with local build and add to Pages"
 git push -u origin main
 ```
 
+# Dataset
+
+Module 6 will make use of the flights.csv dataset obtained from the seaborn library located at the following url: https://github.com/mwaskom/seaborn-data/blob/master/flights.csv. This csv file has been copied into the Module 6 repository. The dataset contains information of flights between 1949 and 1960 and includes the year, month, and number of passengers.

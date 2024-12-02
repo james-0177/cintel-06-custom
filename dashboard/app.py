@@ -56,8 +56,7 @@ with ui.sidebar(position="right", open="open", bg="silver"):
 with ui.layout_columns():
     with ui.value_box(
         showcase=icon_svg("plane"),
-        theme="bg-gradient-blue-purple",
-    ):
+        theme="bg-gradient-blue-purple"):
         "Flight Data: Number of Passengers per Flight, from 1949 to 1960"
 
 with ui.layout_columns():

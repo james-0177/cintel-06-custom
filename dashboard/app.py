@@ -21,19 +21,22 @@ flights_df: pd.DataFrame = pd.read_csv(Path(__file__).parent / "flights.csv")
 # Reactive calculations and effects
 # -------------------------------------------------
 @reactive.calc
-def filtered_data():
-    selected_year = input.selected_year_list
-    selected_month = input.selected_month_list
-    
-    df = flights_df
-    
+def filtered_year():
+    selected_year=input.selected_year_list()
     if selected_year:
-        df = df[df["year"].isin([int(y) for y in selected_year])]
-    
+        year_df=flights_df[flights_df['year'].isin([int(y) for y in selected_year])]
+    else:
+        year_df=flights_df
+    return year_df
+
+@reactive.calc
+def filtered_month():
+    selected_month=input.selected_month_list()
     if selected_month:
-        df = df[df["month"].isin(selected_month)]
-    
-    return df
+        month_df=flights_df[flights_df['month'].isin(selected_month)]
+    else:
+        month_df=flights_df
+    return month_df
 
 # ------------------------------------------------
 # Define the Shiny UI Page layout - Page Options
@@ -69,14 +72,14 @@ with ui.layout_columns():
         ui.card_header("Data Grid of Flights")
         @render.data_frame
         def grid():
-             return render.DataGrid(data=filtered_data())
+             return render.DataGrid(data=filtered_year() + filtered_month())
         
 with ui.layout_columns():
     with ui.card(full_screen=True):
         ui.card_header("Plotly Scatterplot: Flights")
         @render_plotly
         def plotly_scatterplot():
-            return px.scatter(data_frame=filtered_data(), x="month", y="year", color="passengers", hover_name="passengers")
+            return px.scatter(data_frame=filtered_year() + filtered_month(), x="month", y="year", color="passengers", hover_name="passengers")
 #---------------------------------------------------------------------
 # In Shiny Express, everything not in the sidebar is in the main panel
 #---------------------------------------------------------------------

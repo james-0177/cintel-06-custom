@@ -62,11 +62,10 @@ with ui.layout_columns():
 
 with ui.layout_columns():
     with ui.card(full_screen=True):
-        ui.card_header("Plotly Histogram: Distribution of Passengers by Selected Month")
-        @render_plotly
+        ui.card_header("Seaborn Histogram: Distribution of Passengers by Selected Month")
+        @render.plot
         def plot():
-            selected_month=input.selected_month_list()
-            return px.histogram(filtered_month(), x=selected_month, color="passengers", nbins=flights_df['year'])
+            return sns.histplot(data=filtered_month(), x="year", hue="month", bins="passengers")
 
 with ui.layout_columns():
     with ui.card(full_screen=True):

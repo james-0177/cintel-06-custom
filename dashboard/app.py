@@ -21,22 +21,20 @@ flights_df: pd.DataFrame = pd.read_csv(Path(__file__).parent / "flights.csv")
 # Reactive calculations and effects
 # -------------------------------------------------
 @reactive.calc
-def filtered_year():
-    selected_year=input.selected_year_list()
+def filtered_data():
+    selected_year = input.selected_year_list
+    selected_month = input.selected_month_list
+    
+    df = flights_df
+    
     if selected_year:
-        year_df=flights_df[flights_df["year"].isin([int(y) for y in selected_year])]
-    else:
-        year_df=flights_df
-    return year_df
-
-@reactive.calc
-def filtered_month():
-    selected_month=input.selected_month_list()
+        df = df[df["year"].isin([int(y) for y in selected_year])]
+    
     if selected_month:
-        filtered_df=flights_df[flights_df['month'].isin(selected_month)]
-    else:
-        filtered_df=flights_df
-    return filtered_df
+        df = df[df["month"].isin(selected_month)]
+    
+    return df
+
 # ------------------------------------------------
 # Define the Shiny UI Page layout - Page Options
 # ------------------------------------------------
@@ -71,14 +69,14 @@ with ui.layout_columns():
         ui.card_header("Data Grid of Flights")
         @render.data_frame
         def grid():
-             return render.DataGrid(data=filtered_year())
+             return render.DataGrid(data=filtered_data())
         
 with ui.layout_columns():
     with ui.card(full_screen=True):
         ui.card_header("Plotly Scatterplot: Flights")
         @render_plotly
         def plotly_scatterplot():
-            return px.scatter(data_frame=filtered_year(), x="month", y="year", color="passengers", hover_name="passengers")
+            return px.scatter(data_frame=filtered_data(), x="month", y="year", color="passengers", hover_name="passengers")
 #---------------------------------------------------------------------
 # In Shiny Express, everything not in the sidebar is in the main panel
 #---------------------------------------------------------------------

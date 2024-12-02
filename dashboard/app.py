@@ -62,13 +62,6 @@ with ui.layout_columns():
 
 with ui.layout_columns():
     with ui.card(full_screen=True):
-        ui.card_header("Seaborn Histogram: Distribution of Passengers by Selected Month")
-        @render.plot
-        def plot():
-            return sns.histplot(data=filtered_month(), x="year", hue="month", bins="passengers")
-
-with ui.layout_columns():
-    with ui.card(full_screen=True):
         ui.card_header("Plotly Scatterplot: Flights")
         @render_plotly
         def plotly_scatterplot():

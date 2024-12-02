@@ -24,7 +24,7 @@ flights_df: pd.DataFrame = pd.read_csv(Path(__file__).parent / "flights.csv")
 def filtered_year():
     selected_year=input.selected_year_list()
     if selected_year:
-        filtered_df=flights_df[flights_df['flights'].isin(selected_year)]
+        filtered_df=flights_df[flights_df["flights"].isin(selected_year)]
     else:
         filtered_df=flights_df
     return filtered_df
@@ -33,7 +33,7 @@ def filtered_year():
 def filtered_month():
     selected_month=input.selected_month_list()
     if selected_month:
-        filtered_df=flights_df[flights_df['flights'].isin(selected_month)]
+        filtered_df=flights_df[flights_df["flights"].isin(selected_month)]
     else:
         filtered_df=flights_df
     return filtered_df

@@ -32,7 +32,7 @@ def filtered_month():
 # ------------------------------------------------
 # Define the Shiny UI Page layout - Page Options
 # ------------------------------------------------
-ui.page_opts(showcase=icon_svg("plane"),title="Pinkston's Custom PyShiny Plots with Flights", fillable=True, style="background-color: silver")
+ui.page_opts(title="Pinkston's Custom PyShiny Plots with Flights", fillable=True, style="background-color: silver")
 # ------------------------------------------------
 # Define the Shiny UI Page layout - Sidebar
 # ------------------------------------------------

@@ -54,19 +54,6 @@ with ui.sidebar(position="right", open="open", bg="silver"):
     
 # Main Content
 with ui.layout_columns():
-    with ui.value_box(
-        showcase=icon_svg("plane"),
-        theme="bg-gradient-blue-purple",
-    ):
-        "Flight Data: Number of Passengers per Flight, from 1949 to 1960"
-        "Selected Month"
-
-        @render.text
-        def display_month():
-            month_selected = filtered_month()
-            return f"{month_selected}"
-
-with ui.layout_columns():
     with ui.card(full_screen=True):
         ui.card_header("Data Grid of Flights")
         @render.data_frame
